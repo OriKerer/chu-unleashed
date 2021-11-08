@@ -368,7 +368,7 @@ namespace Unity.LEGO.Minifig
                 }
 
                 // Check if player is jumping.
-                if (Input.GetButtonDown("Jump"))
+                if (Input.GetButtonDown("Jump") || TCKInput.GetAction("Action",EActionEvent.Down))
                 {
                     if (!airborne || jumpsInAir > 0)
                     {

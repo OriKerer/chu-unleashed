@@ -12,7 +12,7 @@ using UnityEngine.EventSystems;
 namespace TouchControlsKit
 {
     public class TCKButton : ControllerBase,
-        IPointerExitHandler, IPointerDownHandler, IDragHandler, IPointerUpHandler, IPointerClickHandler
+        IPointerExitHandler, IPointerDownHandler, IDragHandler, IPointerUpHandler, IPointerClickHandler, IPointerEnterHandler
     {
         public bool swipeOut = false;
 
@@ -22,14 +22,17 @@ namespace TouchControlsKit
         public Sprite pressedSprite;
 
         public Color32 pressedColor = new Color32( 255, 255, 255, 165 );
+        private const int hoverDelay = 3;
 
         int pressedFrame = -1
             , releasedFrame = -1
-            , clickedFrame = -1;
+            , clickedFrame = -1
+            , hoverFrame = -1 - hoverDelay;
+
+        public bool enableHover = true;
 
         bool hovered = false;
 
-        static int someone_hovered = 0;
         // isPRESSED
         internal bool isPRESSED {  get { return touchDown; } }
         // isDOWN
@@ -39,7 +42,9 @@ namespace TouchControlsKit
         // isCLICK
         internal bool isCLICK { get { return ( clickedFrame == Time.frameCount - 1 ); } }
         
-        internal bool isHover {  get { return hovered || touchDown; } }
+        internal bool isHover {  get { return Time.frameCount - hoverDelay <= hoverFrame; } }
+
+        
 
 
                 
@@ -57,41 +62,19 @@ namespace TouchControlsKit
                 ButtonDown();
             }            
         }
-        private void OnMouseOver()
-        {
-            hovered = true;
-            if (touchDown == false)
-            {
-                touchDown = true;
-                touchPhase = ETouchPhase.Began;
-                pressedFrame = Time.frameCount;
 
+
+        protected override void FixedUpdate()
+        {
+            base.FixedUpdate();
+            if (hovered)
+            {
+                hoverFrame = Time.frameCount;
                 ButtonDown();
+
             }
 
-        }
-
-        private void OnMouseEnter()
-        {
-            someone_hovered++;
-            OnMouseOver();
-        }
-
-        private void OnMouseExit()
-        {
-            someone_hovered--;
-            if (someone_hovered > 0)
-            {
-                ControlReset();
-            } 
-            
-            hovered = false;
-        }
-
-
-        private void Update()
-        {
-            if (!hovered && !touchDown && someone_hovered > 0)
+            if(Time.frameCount - hoverDelay > hoverFrame)
             {
                 ControlReset();
             }
@@ -114,8 +97,6 @@ namespace TouchControlsKit
         protected override void ControlReset()
         {
             base.ControlReset();
-
-            hovered = false;
             releasedFrame = Time.frameCount;
             ButtonUp();            
         }        
@@ -142,9 +123,10 @@ namespace TouchControlsKit
         // OnPointer Exit
         public void OnPointerExit( PointerEventData pointerData )
         {
-            if( swipeOut == false ) {
-                OnPointerUp( pointerData );
-            }                
+            //if( swipeOut == false ) {
+            //    OnPointerUp( pointerData );
+            //}               
+            hovered = false;
         }
 
         // OnPointer Up
@@ -158,5 +140,10 @@ namespace TouchControlsKit
         {
             clickedFrame = Time.frameCount;
         }
-    };
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            hovered = true && enableHover;
+        }
+    }
 }

@@ -15,6 +15,7 @@ namespace TouchControlsKit.Inspector
     public class TCKButtonEditor : ControllerBaseEditor
     {
         SerializedProperty swipeOutProp;
+        SerializedProperty enableHoverProp;
         SerializedProperty normalSpriteProp, pressedSpriteProp;
         SerializedProperty pressedColorProp;
 
@@ -25,7 +26,7 @@ namespace TouchControlsKit.Inspector
             base.OnEnable();
 
             swipeOutProp = serializedObject.FindProperty( "swipeOut" );
-
+            enableHoverProp = serializedObject.FindProperty("enableHover");
             normalSpriteProp = serializedObject.FindProperty( "normalSprite" );
             pressedSpriteProp = serializedObject.FindProperty( "pressedSprite" );
 
@@ -42,6 +43,7 @@ namespace TouchControlsKit.Inspector
 
             GUILayout.Space( 5f );
             TCKEditorHelper.DrawPropertyField( swipeOutProp );
+            TCKEditorHelper.DrawPropertyField(enableHoverProp);
 
             GUILayout.Space( 5f );
 
