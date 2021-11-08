@@ -8,39 +8,29 @@ public class  CinemachineTouchDeligate : MonoBehaviour
 
     public float TouchSensitivity_x = 10f;
     public float TouchSensitivity_y = 10f;
+    private  ButtonHover pad;
 
     // Use this for initialization
     void Start()
     {
+        pad = GameObject.FindObjectOfType<ButtonHover>();
         CinemachineCore.GetInputAxis = HandleAxisInputDelegate;
     }
 
     float HandleAxisInputDelegate(string axisName)
     {
-        var touches = Input.touches.Where(t => t.rawPosition.x > Screen.width);
+        //if (Input.mousePosition.x < Screen.width / 2)
+        //{
+        //    return 0f;
+        //}
+        
         switch (axisName)
         {
-
             case "Mouse X":
-
-                if (Input.touchCount > 0 && touches.Count() > 0)
-                {
-                    return touches.ElementAt(0).deltaPosition.x / TouchSensitivity_x;
-                }
-                else
-                {
-                    return Input.GetAxis(axisName);
-                }
+                return pad.DragX;// Input.GetAxis(axisName);
 
             case "Mouse Y":
-                if (Input.touchCount > 0 && touches.Count() > 0)
-                {
-                    return touches.ElementAt(0).deltaPosition.y / TouchSensitivity_y;
-                }
-                else
-                {
-                    return Input.GetAxis(axisName);
-                }
+                return pad.DragY; //Input.GetAxis(axisName);
 
             default:
                 Debug.LogError("Input <" + axisName + "> not recognyzed.", this);
