@@ -39,7 +39,8 @@ namespace TouchControlsKit
         Down,
         Press,
         Up,
-        Click 
+        Click,
+        Hover
     };
 
     // Used for DPad arrows.

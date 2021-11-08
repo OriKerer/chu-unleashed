@@ -22,12 +22,14 @@ namespace TouchControlsKit
         public Sprite pressedSprite;
 
         public Color32 pressedColor = new Color32( 255, 255, 255, 165 );
-               
+
         int pressedFrame = -1
             , releasedFrame = -1
             , clickedFrame = -1;
 
+        bool hovered = false;
 
+        static int someone_hovered = 0;
         // isPRESSED
         internal bool isPRESSED {  get { return touchDown; } }
         // isDOWN
@@ -36,6 +38,8 @@ namespace TouchControlsKit
         internal bool isUP { get { return ( releasedFrame == Time.frameCount - 1 ); } }
         // isCLICK
         internal bool isCLICK { get { return ( clickedFrame == Time.frameCount - 1 ); } }
+        
+        internal bool isHover {  get { return hovered || touchDown; } }
 
 
                 
@@ -53,8 +57,45 @@ namespace TouchControlsKit
                 ButtonDown();
             }            
         }
-                
+        private void OnMouseOver()
+        {
+            hovered = true;
+            if (touchDown == false)
+            {
+                touchDown = true;
+                touchPhase = ETouchPhase.Began;
+                pressedFrame = Time.frameCount;
 
+                ButtonDown();
+            }
+
+        }
+
+        private void OnMouseEnter()
+        {
+            someone_hovered++;
+            OnMouseOver();
+        }
+
+        private void OnMouseExit()
+        {
+            someone_hovered--;
+            if (someone_hovered > 0)
+            {
+                ControlReset();
+            } 
+            
+            hovered = false;
+        }
+
+
+        private void Update()
+        {
+            if (!hovered && !touchDown && someone_hovered > 0)
+            {
+                ControlReset();
+            }
+        }
         // Button Down
         protected void ButtonDown()
         {
@@ -74,6 +115,7 @@ namespace TouchControlsKit
         {
             base.ControlReset();
 
+            hovered = false;
             releasedFrame = Time.frameCount;
             ButtonUp();            
         }        
@@ -89,7 +131,7 @@ namespace TouchControlsKit
         }
 
         // OnDrag
-        public void OnDrag( PointerEventData pointerData )
+        public virtual void OnDrag( PointerEventData pointerData )
         {
             if( Input.touchCount >= touchId && touchDown )
             {

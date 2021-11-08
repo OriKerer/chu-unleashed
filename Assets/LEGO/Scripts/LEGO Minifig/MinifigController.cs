@@ -304,9 +304,8 @@ namespace Unity.LEGO.Minifig
                             Vector3 targetSpeed;
                             if (true)
                             {
-                                const string js_name = "Joystick0";
-                                targetSpeed = right * TCKInput.GetAxis(js_name, EAxisType.Horizontal);
-                                targetSpeed += forward * TCKInput.GetAxis(js_name, EAxisType.Vertical);
+                                targetSpeed = right * (TCKInput.GetAction("Right", EActionEvent.Hover) ? 1 : TCKInput.GetAction("Left", EActionEvent.Hover) ? -1 : 0);
+                                targetSpeed += forward * (TCKInput.GetAction("Up", EActionEvent.Hover) ? 1 : TCKInput.GetAction("Down", EActionEvent.Hover) ? -1 : 0);
                             }
                             else
                             {

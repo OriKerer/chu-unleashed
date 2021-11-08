@@ -30,18 +30,6 @@ public class ButtonHover : TCKButton
     }
     public bool Pressed { get => pressed; }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void  OnMouseOver() 
     {
         pressed = true;   

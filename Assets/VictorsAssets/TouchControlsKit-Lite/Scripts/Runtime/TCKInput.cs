@@ -532,6 +532,8 @@ namespace TouchControlsKit
                             return buttons[ i ].isUP;
                         case EActionEvent.Click:
                             return buttons[ i ].isCLICK;
+                        case EActionEvent.Hover:
+                            return buttons[i].isHover;
 
                         default: break;
                     }
