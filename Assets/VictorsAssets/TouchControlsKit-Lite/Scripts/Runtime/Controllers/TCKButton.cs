@@ -28,8 +28,7 @@ namespace TouchControlsKit
         int pressedFrame = -1
             , releasedFrame = -1
             , clickedFrame = -1
-            , hoverFrame = -1 - hoverDelay
-            , uniqueHoverFrame = -1 - hoverDelay;
+            , hoverFrame = -1 - hoverDelay;
 
         public bool enableHover = true;
 
@@ -45,9 +44,6 @@ namespace TouchControlsKit
         internal bool isCLICK { get { return ( clickedFrame == Time.frameCount - 1 ); } }
         
         internal bool isHover {  get { return Time.frameCount - hoverDelay <= hoverFrame; } }
-
-        
-
 
                 
         // Update Position
@@ -71,6 +67,7 @@ namespace TouchControlsKit
             base.FixedUpdate();
             bool mouseDown = Input.GetMouseButton(0);
 
+            // Fixes problem when onPointerExit wont be triggered
             hovered &= mouseDown;
 
             if (hovered && mouseDown)
@@ -162,15 +159,6 @@ namespace TouchControlsKit
         public void OnPointerEnter(PointerEventData eventData)
         {
             hovered = true;
-        }
-
-
-        private void OnMouseOver()
-        {
-            if (Input.GetMouseButton(0))
-            {
-                uniqueHoverFrame = Time.frameCount;
-            }
         }
     }
 }
