@@ -43,7 +43,7 @@ namespace Unity.LEGO.Game
 
             m_FreeLookCamera = FindObjectOfType<CinemachineFreeLook>();
 #if !UNITY_EDITOR
-            Cursor.lockState = CursorLockMode.Locked;
+           // Cursor.lockState = CursorLockMode.Locked; // 
 #endif
 
             // Enable camera depth texture to ensure fog works even without shadows.

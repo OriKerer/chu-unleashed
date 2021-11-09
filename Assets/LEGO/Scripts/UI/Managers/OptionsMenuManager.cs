@@ -81,7 +81,7 @@ namespace Unity.LEGO.UI
         void SetPauseMenuActivation(bool active)
         {
 #if !UNITY_EDITOR
-            Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.None ;//active ? CursorLockMode.None : CursorLockMode.Locked; // 
 #endif
 
             m_Menu.SetActive(active);
