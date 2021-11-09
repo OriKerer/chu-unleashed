@@ -23,15 +23,17 @@ namespace TouchControlsKit
 
         public Color32 pressedColor = new Color32( 255, 255, 255, 165 );
         private const int hoverDelay = 3;
+        private bool hovered = false;
 
         int pressedFrame = -1
             , releasedFrame = -1
             , clickedFrame = -1
-            , hoverFrame = -1 - hoverDelay;
+            , hoverFrame = -1 - hoverDelay
+            , uniqueHoverFrame = -1 - hoverDelay;
 
         public bool enableHover = true;
 
-        bool hovered = false;
+        bool pushedEffect = false;
 
         // isPRESSED
         internal bool isPRESSED {  get { return touchDown; } }
@@ -67,14 +69,21 @@ namespace TouchControlsKit
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (hovered)
+            bool mouseDown = Input.GetMouseButton(0);
+
+            hovered &= mouseDown;
+
+            if (hovered && mouseDown)
             {
                 hoverFrame = Time.frameCount;
-                ButtonDown();
+                if (enableHover)
+                {
+                    ButtonDown();
+                }
 
             }
 
-            if(Time.frameCount - hoverDelay > hoverFrame)
+            if (Time.frameCount - hoverDelay > hoverFrame)
             {
                 ControlReset();
             }
@@ -82,15 +91,24 @@ namespace TouchControlsKit
         // Button Down
         protected void ButtonDown()
         {
-            baseImage.sprite = pressedSprite;
-            baseImage.color = visible ? pressedColor : ( Color32 )Color.clear;
+            if (!pushedEffect)
+            {
+                baseImage.sprite = pressedSprite;
+                baseImage.color = visible ? pressedColor : ( Color32 )Color.clear;
+            }
+            pushedEffect = true;
         }
 
         // Button Up
         protected void ButtonUp()
         {
-            baseImage.sprite = normalSprite;
-            baseImage.color = visible ? baseImageColor : ( Color32 )Color.clear;
+            if(pushedEffect)
+            {
+                baseImage.sprite = normalSprite;
+                baseImage.color = visible ? baseImageColor : (Color32)Color.clear;
+            }
+ 
+            pushedEffect = false;
         }
 
         // Control Reset
@@ -98,7 +116,7 @@ namespace TouchControlsKit
         {
             base.ControlReset();
             releasedFrame = Time.frameCount;
-            ButtonUp();            
+            ButtonUp();   
         }        
 
         // OnPointer Down
@@ -125,7 +143,7 @@ namespace TouchControlsKit
         {
             //if( swipeOut == false ) {
             //    OnPointerUp( pointerData );
-            //}               
+            //}
             hovered = false;
         }
 
@@ -143,7 +161,16 @@ namespace TouchControlsKit
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            hovered = true && enableHover;
+            hovered = true;
+        }
+
+
+        private void OnMouseOver()
+        {
+            if (Input.GetMouseButton(0))
+            {
+                uniqueHoverFrame = Time.frameCount;
+            }
         }
     }
 }
