@@ -15,7 +15,7 @@ public class ButtonHover : TCKButton
         get { 
             var tmp = drag.x;
             drag.x = 0;
-            return tmp / 25;
+            return tmp / 10;
     }
     }
 
@@ -25,7 +25,7 @@ public class ButtonHover : TCKButton
         {
             var tmp = drag.y;
             drag.y = 0;
-            return tmp / 40;
+            return tmp / 30;
         }
     }
     public bool Pressed { get => pressed; }
