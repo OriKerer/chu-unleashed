@@ -37,7 +37,6 @@ public class TypeEffect : MonoBehaviour
 
     void EffectStart()
     {
-        //처음에는공백을 두어야한다.
         msgText.text = "";
         isAnim = true;
         index = 0;
@@ -69,9 +68,5 @@ public class TypeEffect : MonoBehaviour
         endCursor.SetActive(true);
         isAnim = false;
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

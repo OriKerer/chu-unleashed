@@ -19,13 +19,17 @@ public class GameManagerScript : MonoBehaviour
     public GameObject menuSet;
     public GameObject player;
     public Text nameText;
+    private Text objective;
     
      void Start()
     {
+        objective = GameObject.Find("ObjectiveText").GetComponent<Text>();
         GameLoad();
         isAction = false;
         talkPanel.SetBool("isShow",isAction);
-        Debug.Log(questManager.checkQuest());
+        //Debug.Log(questManager.checkQuest());
+        objective.text = questManager.checkQuest();
+
         questText.text = questManager.checkQuest();
         
     }
@@ -64,7 +68,7 @@ public class GameManagerScript : MonoBehaviour
         else
         {
             questTalkIndex = questManager.GetQuestTalkIndex(id);
-            talkData = talkManager.GetTalk(id + questTalkIndex, talkIndex);//대화 저장
+            talkData = talkManager.GetTalk(id + questTalkIndex, talkIndex);
         }
         
 
@@ -72,7 +76,8 @@ public class GameManagerScript : MonoBehaviour
         {
             isAction = false;
             talkIndex = 0;
-            Debug.Log(questManager.checkQuest(id));
+            //Debug.Log(questManager.checkQuest(id));
+            objective.text = questManager.checkQuest(id);
             questText.text = questManager.checkQuest();
             return;
         }
@@ -81,13 +86,13 @@ public class GameManagerScript : MonoBehaviour
         {
             talk.SetMsg(talkData.Split(':')[0]);
 
-            portraitImg.sprite = talkManager.GetPortrait(id , int.Parse(talkData.Split(':')[1]));
-            portraitImg.color = new Color(1, 1, 1, 1);
-            if(prevPortrait != portraitImg.sprite)
-            {
-                portraitAnim.SetTrigger("doEffect");
-                prevPortrait = portraitImg.sprite;
-            }
+            //portraitImg.sprite = talkManager.GetPortrait(id , int.Parse(talkData.Split(':')[1]));
+            //portraitImg.color = new Color(1, 1, 1, 1);
+            //if(prevPortrait != portraitImg.sprite)
+            //{
+            //    portraitAnim.SetTrigger("doEffect");
+            //    prevPortrait = portraitImg.sprite;
+            //}
 
             nameText.text = talkManager.GetName(id);
             
@@ -127,7 +132,7 @@ public class GameManagerScript : MonoBehaviour
         player.transform.position = new Vector3(x, y, 0);
         questManager.questId = questId;
         questManager.questActionIndex = questActionIndex;
-        questManager.controlObject();
+        //questManager.controlObject();
     }
 
     public void GameExit()
