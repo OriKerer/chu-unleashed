@@ -27,9 +27,13 @@ public class QuestManager : MonoBehaviour
     void GenerateData()
     {
         questList.Add(10, new QuestData("Talk With Racheli", new int[] {1000}));//questId, questData
-        questList.Add(20, new QuestData("Talk With Harush", new int[] { 2000 }));//questId, questData
-        questList.Add(30, new QuestData("Try To fix the problem", new int[] { 3000 }));
-        questList.Add(40, new QuestData("Talk to Racheli", new int[] { 1000 }));
+        questList.Add(20, new QuestData("Talk With Harush", new int[] { 2000 }));
+        questList.Add(30, new QuestData("Talk to Racheli", new int[] { 1000 }));
+        questList.Add(40, new QuestData("Check Barak server", new int[] { 500 }));
+        questList.Add(50, new QuestData("Talk to Racheli", new int[] { 1000 }));
+        questList.Add(60, new QuestData("Try To find the problem", new int[] { 3000 }));
+        questList.Add(70, new QuestData("Talk to Racheli", new int[] { 1000 }));
+        questList.Add(80, new QuestData("Go To VR station", new int[] { 4000 }));
     }
 
     public int GetQuestTalkIndex(int id)
@@ -56,7 +60,7 @@ public class QuestManager : MonoBehaviour
     }
     void nextQuest()
     {
-        if(questId == 30)
+        if(questId == 60)
         {
             foreach(var o in brokenCable)
             {

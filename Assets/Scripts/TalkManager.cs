@@ -17,12 +17,11 @@ public class TalkManager : MonoBehaviour
     }
 
     void GenerateData(){
-        talkData.Add(1000, new string[] { "First 1", "second 1" });//npc A :number -> index
+        talkData.Add(1000, new string[] { "Where is Saar?"});//npc A :number -> index
         talkData.Add(2000, new string[] { "I wonder how many camels I am worth?..."});//npc A :number -> index
         talkData.Add(3000, new string[] { "That Does not look good"});
-        talkData.Add(100, new string[] { "first 3" });//desk
-        talkData.Add(200, new string[] { "first 4" });//box
         talkData.Add(400, new string[] { "Barak Trainer" });//box
+        talkData.Add(800, new string[] { "You found the secret Pretzel!!!", "Sadly,", " You don't have a mouse to eat it." });//box
         talkData.Add(500, new string[] { "Barak Traner servers", "Seems to work fine" });//box
         //quest talk
         talkData.Add(10 + 1000, new string[] { 
@@ -37,8 +36,13 @@ public class TalkManager : MonoBehaviour
             "never the hardware."});
         talkData.Add(20 + 1000, new string[] { "Did you talk with Harush?"});
 
-        talkData.Add(30 + 1000, new string[] { "Of course, he blame us."});
-        talkData.Add(30 + 3000, new string[] { "That may be the cause of the problem,", "Better plug this in."});
+        talkData.Add(30 + 1000, new string[] { "Of course, he blame us.", "Try to check the server"});
+        talkData.Add(50 + 1000, new string[] { "Of course the server was fine.", "Try looking around.", "See if something look wrong"});
+        talkData.Add(70 + 1000, new string[] { "The cable was unpluged?!", "Lucky you fugure that out", "We finnished here", "You can work on the VR", " It's on the table"});
+        talkData.Add(80 + 1000, new string[] { "Good Job!" });
+
+        talkData.Add(60 + 3000, new string[] { "That must be the the problem!",
+            "Better plug this in."});
 
         nameData.Add(3000, "Unpluged Cable");
         nameData.Add(1000, "Racheli");
