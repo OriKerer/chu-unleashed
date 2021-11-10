@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/LEGO/Scenes/MainMenu.unity
     guid: b404987d7d9ad3042948b55aaa225380
   - enabled: 0
+    path: Assets/Scenes/Level1.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
     path: Assets/LEGO/Scenes/Playground.unity
     guid: 11e617b9701224959be0f1b25929294e
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
     path: Assets/2DGamekit/Scenes/Start.unity
     guid: 57df1e417250bc247976c2c0dc088efe
