@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class QuestManager : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class QuestManager : MonoBehaviour
         questList.Add(50, new QuestData("Talk to Racheli", new int[] { 1000 }));
         questList.Add(60, new QuestData("Try To find the problem", new int[] { 3000 }));
         questList.Add(70, new QuestData("Talk to Racheli", new int[] { 1000 }));
-        questList.Add(80, new QuestData("Go To VR station", new int[] { 4000 }));
+        questList.Add(80, new QuestData("Go To VR station", new int[] { 5000 }));
     }
 
     public int GetQuestTalkIndex(int id)
@@ -70,6 +71,9 @@ public class QuestManager : MonoBehaviour
             {
                 o.SetActive(true);
             }
+        } else if (questId == 80)
+        {
+            SceneManager.LoadScene("Playground");
         }
 
         questId += 10;

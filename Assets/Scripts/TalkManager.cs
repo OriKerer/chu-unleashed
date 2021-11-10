@@ -20,8 +20,9 @@ public class TalkManager : MonoBehaviour
         talkData.Add(1000, new string[] { "Where is Saar?"});//npc A :number -> index
         talkData.Add(2000, new string[] { "I wonder how many camels I am worth?..."});//npc A :number -> index
         talkData.Add(3000, new string[] { "That Does not look good"});
+        talkData.Add(5000, new string[] { "I need to finish my work before I get on the VR"});
         talkData.Add(400, new string[] { "Barak Trainer" });//box
-        talkData.Add(800, new string[] { "You found the secret Pretzel!!!", "Sadly,", " You don't have a mouse to eat it." });//box
+        talkData.Add(800, new string[] { "You found the secret Pretzel!!!", "Sadly,", " You don't have a mouth to eat it." });//box
         talkData.Add(500, new string[] { "Barak Traner servers", "Seems to work fine" });//box
         //quest talk
         talkData.Add(10 + 1000, new string[] { 
@@ -43,6 +44,7 @@ public class TalkManager : MonoBehaviour
 
         talkData.Add(60 + 3000, new string[] { "That must be the the problem!",
             "Better plug this in."});
+        talkData.Add(80 + 5000, new string[] { "Yes finally!", "Lets put on the VR headset" });
 
         nameData.Add(3000, "Unpluged Cable");
         nameData.Add(1000, "Racheli");
