@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | Chu Unleashed</title>
+    <title>Unity WebGL Player | My project2</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
@@ -20,7 +20,7 @@
       <div id="unity-footer">
         <div id="unity-webgl-logo"></div>
         <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">Chu Unleashed</div>
+        <div id="unity-build-title">My project2</div>
       </div>
     </div>
     <script>
@@ -56,16 +56,15 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/build.asm.loader.js";
+      var loaderUrl = buildUrl + "/build.loader.js";
       var config = {
-        dataUrl: buildUrl + "/build.data",
-        frameworkUrl: buildUrl + "/build.asm.framework.js",
-        codeUrl: buildUrl + "/build.asm.js",
-        memoryUrl: buildUrl + "/build.asm.mem",
+        dataUrl: buildUrl + "/build.data.br",
+        frameworkUrl: buildUrl + "/build.framework.js.br",
+        codeUrl: buildUrl + "/build.wasm.br",
         streamingAssetsUrl: "StreamingAssets",
-        companyName: "orik",
-        productName: "Chu Unleashed",
-        productVersion: "1.0",
+        companyName: "DefaultCompany",
+        productName: "My project2",
+        productVersion: "2.3.0",
         showBanner: unityShowBanner,
       };
 
