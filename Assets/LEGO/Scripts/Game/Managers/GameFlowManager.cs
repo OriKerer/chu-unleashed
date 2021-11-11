@@ -12,13 +12,13 @@ namespace Unity.LEGO.Game
     {
         [Header("Win")]
         [SerializeField, Tooltip("The name of the scene you want to load when the game is won.")]
-        string m_WinScene = "Menu Win";
+        string m_WinScene = "MainMenu";
         [SerializeField, Tooltip("The delay in seconds between the game is won and the win scene is loaded.")]
         float m_WinSceneDelay = 5.0f;
 
         [Header("Lose")]
         [SerializeField, Tooltip("The name of the scene you want to load when the game is lost.")]
-        string m_LoseScene = "Menu Lose";
+        string m_LoseScene = "LEGO Tutotial";
         [SerializeField, Tooltip("The delay in seconds between the game is lost and the lose scene is loaded.")]
         float m_LoseSceneDelay = 3.0f;
 
@@ -43,7 +43,10 @@ namespace Unity.LEGO.Game
 
             m_FreeLookCamera = FindObjectOfType<CinemachineFreeLook>();
 #if !UNITY_EDITOR
-           // Cursor.lockState = CursorLockMode.Locked; // 
+            if (!Platform.IsMobileBrowser())
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
 #endif
 
             // Enable camera depth texture to ensure fog works even without shadows.

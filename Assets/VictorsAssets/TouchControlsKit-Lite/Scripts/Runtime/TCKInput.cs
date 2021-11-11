@@ -29,7 +29,13 @@ namespace TouchControlsKit
 
         static TCKInput m_Instance;
 
-
+        private void Start()
+        {
+            if (!Platform.IsMobileBrowser())
+            {
+                this.gameObject.SetActive(false);
+            }
+        }
         static bool m_Active;
 
         /// <summary>

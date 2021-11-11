@@ -302,7 +302,7 @@ namespace Unity.LEGO.Minifig
                                 forward.Normalize();
                             }
                             Vector3 targetSpeed;
-                            if (true)
+                            if (Platform.IsMobileBrowser())
                             {
                                 targetSpeed = right * (TCKInput.GetAction("Right", EActionEvent.Hover) ? 1 : TCKInput.GetAction("Left", EActionEvent.Hover) ? -1 : 0);
                                 targetSpeed += forward * (TCKInput.GetAction("Up", EActionEvent.Hover) ? 1 : TCKInput.GetAction("Down", EActionEvent.Hover) ? -1 : 0);

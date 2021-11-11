@@ -73,7 +73,7 @@ public class QuestManager : MonoBehaviour
             }
         } else if (questId == 80)
         {
-            SceneManager.LoadScene("Playground");
+            SceneManager.LoadScene("Level2");
         }
 
         questId += 10;

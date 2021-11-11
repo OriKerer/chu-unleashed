@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using MarksAssets.FullscreenWebGL;
 
 public class StartButtonHandler : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(Platform.IsMobileBrowser())
+            FullscreenWebGL.EnterFullscreen("hide");
     }
 
     // Update is called once per frame
@@ -19,6 +21,6 @@ public class StartButtonHandler : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Playground");
+        SceneManager.LoadScene("Level1");
     }
 }

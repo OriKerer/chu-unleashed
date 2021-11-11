@@ -13,8 +13,11 @@ public class  CinemachineTouchDeligate : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        pad = GameObject.FindObjectOfType<ButtonHover>();
-        CinemachineCore.GetInputAxis = HandleAxisInputDelegate;
+        if (Platform.IsMobileBrowser())
+        {
+            pad = GameObject.FindObjectOfType<ButtonHover>();
+            CinemachineCore.GetInputAxis = HandleAxisInputDelegate;
+        }
     }
 
     float HandleAxisInputDelegate(string axisName)

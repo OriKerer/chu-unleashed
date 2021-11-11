@@ -72,16 +72,23 @@ namespace Unity.LEGO.UI
 
         void Update()
         {
-            if (Input.GetButtonDown("InGameMenuOption"))
-            {
-                TogglePauseMenu();
-            }
+            //if (Input.GetButtonDown("InGameMenuOption"))
+            //{
+            //    TogglePauseMenu();
+            //}
         }
 
         void SetPauseMenuActivation(bool active)
         {
 #if !UNITY_EDITOR
-            Cursor.lockState = CursorLockMode.None ;//active ? CursorLockMode.None : CursorLockMode.Locked; // 
+            if (!Platform.IsMobileBrowser())
+            {
+                Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Locked;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
 #endif
 
             m_Menu.SetActive(active);
