@@ -11,8 +11,15 @@ public class QuestManager : MonoBehaviour
     private GameObject[] brokenCable;
     private GameObject[] fixedCable;
     Dictionary<int, QuestData> questList;
+    NextScene nextScene;
+    private bool nextSceneTrigger = false;
+    private float nextSceneTime = 0;
+    private void Start()
+    {
+        nextScene = GameObject.FindObjectOfType<NextScene>();
+    }
 
-     void Awake()
+    void Awake()
     {
         brokenCable = GameObject.FindGameObjectsWithTag("BrokenCable");
         fixedCable = GameObject.FindGameObjectsWithTag("FixedCable");
@@ -73,10 +80,21 @@ public class QuestManager : MonoBehaviour
             }
         } else if (questId == 80)
         {
-            SceneManager.LoadScene("Level2");
+            nextSceneTrigger = true;
+            nextScene.nextScene();
+            nextSceneTime = Time.time + nextScene.Delay;
         }
 
         questId += 10;
         questActionIndex = 0;
     }
+
+    private void Update()
+    {
+        if(nextSceneTrigger && nextSceneTime <= Time.time)
+        {
+            SceneManager.LoadScene("Level2");
+        }
+    }
 }
+
