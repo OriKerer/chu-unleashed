@@ -3,7 +3,7 @@
       public static bool IsMobileBrowser()
       {
 #if UNITY_EDITOR
-        return true; // value to return in Play Mode (in the editor)
+        return false; // value to return in Play Mode (in the editor)
     #elif UNITY_WEBGL
         return WebGLHandler.IsMobileBrowser(); // value based on the current browser
     #else
